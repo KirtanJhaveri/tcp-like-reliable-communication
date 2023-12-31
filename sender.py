@@ -5,7 +5,7 @@ Client that sends STDIN, over a simulated faulty network connection.
 
 import argparse
 import logging
-import homework5.wire
+import utils.wire
 import Solution
 
 PARSER = argparse.ArgumentParser(description="Client script for sending data "
@@ -23,7 +23,7 @@ if ARGS.verbose:
     logging.getLogger('hw5-sender').setLevel(logging.DEBUG)
 
 DATA = open(ARGS.file, 'rb').read()
-SOC = homework5.wire.bad_socket(ARGS.port)
+SOC = utils.wire.bad_socket(ARGS.port)
 
 hw5.send(SOC, DATA)
 

@@ -5,8 +5,8 @@ socket connections.
 import sys
 import argparse
 import logging
-import homework5.wire
-import homework5.logging
+import utils.wire
+import utils.logging
 
 # Grab the dockblock of the current module, to avoid redundantly describing
 # what this program does.
@@ -29,8 +29,8 @@ ARGS = PARSER.parse_args()
 if ARGS.verbose:
     logging.getLogger('hw5-wire').setLevel(logging.DEBUG)
 
-TRANSPORT, LOOP = homework5.wire.create_server(ARGS.port, ARGS.loss,
-                                               ARGS.delay, ARGS.buffer)
+TRANSPORT, LOOP = utils.wire.create_server(ARGS.port, ARGS.loss,
+                                           ARGS.delay, ARGS.buffer)
 
 try:
     LOOP.run_forever()

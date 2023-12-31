@@ -7,7 +7,7 @@ to STDOUT.
 import argparse
 import sys
 import logging
-import homework5.wire
+import utils.wire
 import Solution
 
 PARSER = argparse.ArgumentParser(description="Client script for sending data "
@@ -27,7 +27,7 @@ if ARGS.verbose:
 
 OUTPUT = open(ARGS.file, 'wb') if ARGS.file else sys.stdout.buffer
 
-SOC = homework5.wire.bad_socket(ARGS.port)
+SOC = utils.wire.bad_socket(ARGS.port)
 
 hw5.recv(SOC, OUTPUT)
 

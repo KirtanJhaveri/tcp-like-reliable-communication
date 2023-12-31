@@ -3,8 +3,8 @@ import socket
 import io
 import time
 import struct
-import homework5
-import homework5.logging
+import utils
+import utils.logging
 
 HEADER_FMT = 'I'
 HEADER_SIZE = struct.calcsize(HEADER_FMT)
@@ -126,7 +126,7 @@ def send(sock: socket.socket, data: bytes):
                 over a simulated lossy network.
         data -- A bytes object, containing the data to send over the network.
     """
-    logger = homework5.logging.get_logger("hw5-sender")
+    logger = utils.logging.get_logger("hw5-sender")
 
     # Initialize the needed RTTs
     timeout = 1
@@ -157,7 +157,7 @@ def send(sock: socket.socket, data: bytes):
                     value[1] = sendTime
         signal.setitimer(signal.ITIMER_REAL, timeout)
 
-    chunkSize = homework5.MAX_PACKET - HEADER_SIZE
+    chunkSize = utils.MAX_PACKET - HEADER_SIZE
     offsets = range(0, len(data), chunkSize)
     chunks = [data[i:i + chunkSize] for i in offsets]
 
@@ -181,7 +181,7 @@ def send(sock: socket.socket, data: bytes):
         signal.setitimer(signal.ITIMER_REAL, timeout)
 
         while rcvSeq < lastSeq:
-            rcvpkt = sock.recv(homework5.MAX_PACKET)
+            rcvpkt = sock.recv(utils.MAX_PACKET)
             if not rcvpkt:
                 break
 
@@ -211,7 +211,7 @@ def recv(sock: socket.socket, dest: io.BufferedIOBase) -> int:
     Return:
         The number of bytes written to the destination.
     """
-    logger = homework5.logging.get_logger("hw5-receiver")
+    logger = utils.logging.get_logger("hw5-receiver")
 
     numBytes = 0
     seqNum = 0
@@ -219,7 +219,7 @@ def recv(sock: socket.socket, dest: io.BufferedIOBase) -> int:
     on_hold = {}
 
     while True:
-        rcvpkt = sock.recv(homework5.MAX_PACKET)
+        rcvpkt = sock.recv(utils.MAX_PACKET)
         if not rcvpkt:
             break
 
