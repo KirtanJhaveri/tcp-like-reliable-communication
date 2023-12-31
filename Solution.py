@@ -1,8 +1,3 @@
-"""
-Where solution code to HW5 should be written.  No other files should
-be modified.
-"""
-
 import signal
 import socket
 import io

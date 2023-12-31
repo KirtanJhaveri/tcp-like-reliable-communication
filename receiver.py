@@ -8,7 +8,7 @@ import argparse
 import sys
 import logging
 import homework5.wire
-import hw5
+import Solution
 
 PARSER = argparse.ArgumentParser(description="Client script for sending data "
                                              "over a faulty network "
